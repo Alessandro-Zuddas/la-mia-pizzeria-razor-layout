@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    var myName = "Alessandro";
+    var mySurname = "Zuddas";
+    var sentence = "nel mezzo del cammin di nostra vita";
+    var currentDateTime = DateTime.Now;
+
+    int PrintSumOfNumbers(int num)
+    {
+        int sum = 0;
+        for(int i = 1; i <= num; i++)
+        {
+            sum += i;
+        }
+        return sum;
+    }
+
+    int CharCounter(string _sentence)
+    {
+        int charCount = 0;
+        foreach(char c in _sentence)
+        {
+            if(c == 'a')
+            {
+                charCount++;
+            }
+        }
+
+        return charCount;
+    }
+
+    //Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi)
+    //e mostrare in pagina solo i numeri compresi tra 20 e 70
+
+    Random randomNumb = new Random();
+    List<int> randomNumbers = new List<int>();
+    for (int i = 0; i <= 20; i++)
+    {
+        randomNumbers.Add(randomNumb.Next(1, 90));
+    }
+
+    //Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina:
+
+    //a. la data di 7 giorni fa
+
+    DateTime sevenDaysAgo = DateTime.Today.AddDays(-7);
+
+    //b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+
+    DayOfWeek dayOfWeek = DayOfWeek.Wednesday;
+
+    //c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <h2> Il mio nome è : @myName </h2>
+
+    <h2> Il mio cognome è : @mySurname </h2>
+
+    <span>@PrintSumOfNumbers(15)</span>
+
+    <div>La lettera è contenuta nella frase @CharCounter(sentence) volte.</div>
+
+    <div>@currentDateTime</div>
+
+    <div>
+        @foreach(int number in randomNumbers)
+        {
+            if(number >= 20 && number <= 70)
+            {
+                <span>@number</span>
+            }
+        }
+    </div>
+
+    <div>@sevenDaysAgo</div>
+    <div>@dayOfWeek</div>
+</div>
